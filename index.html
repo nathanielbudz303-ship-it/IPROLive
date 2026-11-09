@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Elevate Opportunities Hub</title>
+<title>Elevate Opportunities Hub v2</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,7 +193,25 @@ window.EH.programs = [
    deadline:"2027-01-15", location:"Chicago (Loop)", paid:true,
    summary:"A 12-week paid internship on building-systems and infrastructure projects for Chicago clients, with site visits, modeling work and a path to a full-time offer.",
    steps:["Put one technical project with numbers at the top of your resume","Book a mock interview at Career Services","Prepare a 2-minute walkthrough of that project","International students: confirm CPT eligibility with Global Services","Apply on Handshake by Jan 15"],
-   status:"updated", lastChecked:11, url:"#"}
+   status:"updated", lastChecked:11, url:"#"},
+  {id:"ext-newgrad-eng", title:"Engineering Development Program (2027 graduates)", org:"Chicago-area manufacturing company", source:"External", type:"Full-time job",
+   years:["4th"], majors:["engineering","computing"], citizenship:["us","pr","intl"], interests:["hardware","software","sustainability"],
+   deadline:"2026-12-04", location:"Chicago suburbs (on site)", paid:true,
+   summary:"A two-year full-time rotational program for graduating seniors, with three rotations across design, test and manufacturing teams and a mentor for each one.",
+   steps:["Lead your resume with your senior design or capstone project","Book a mock interview at Career Services","International students: ask Global Services about OPT timing","Apply on Handshake by Dec 4"],
+   status:"new", lastChecked:9, url:"#"},
+  {id:"ext-newgrad-swe", title:"Associate Software Engineer (2027 start)", org:"Chicago fintech company", source:"External", type:"Full-time job",
+   years:["4th"], majors:["computing","engineering"], citizenship:["us","pr","intl"], interests:["software","data","finance"],
+   deadline:"2026-11-30", location:"Chicago (River North, hybrid)", paid:true,
+   summary:"A full-time software engineering role for May 2027 graduates on a payments platform team, starting with a six-week onboarding cohort.",
+   steps:["Pick 2 projects you can walk through in an interview","Practice 3 medium coding problems a week","Ask a past internship manager to be a reference","International students: confirm your OPT start date with Global Services","Apply by Nov 30"],
+   status:"new", lastChecked:13, url:"#"},
+  {id:"iit-gradprep", title:"Grad School & Fellowship Prep Cohort", org:"Illinois Tech Career Services", source:"IIT", type:"Grad school prep",
+   years:["3rd","4th"], majors:["any"], citizenship:["us","pr","intl"], interests:["research","policy","health","data"],
+   deadline:"2027-01-20", location:"Chicago (Mies Campus)", paid:false,
+   summary:"A spring cohort for juniors and seniors applying to grad school or national fellowships, with statement-of-purpose workshops, letter planning and a mock admissions panel.",
+   steps:["List 3 to 5 programs or fellowships you are considering","Ask two faculty members about letters of recommendation","Draft a one-page statement of purpose","Register for the cohort by Jan 20"],
+   status:"new", lastChecked:14, url:"#"}
 ];
 </script>
 <style>
@@ -277,6 +295,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hdr-btn-p:hover{filter:brightness(.93)}
 .hdr-btn-s{border-color:var(--line);background:var(--surface);color:var(--ink)}
 .hdr-btn-s:hover{border-color:var(--ink-2)}
+button.hdr-btn{cursor:pointer}
+.hdr-btn svg{width:20px;height:20px;flex:none}
+.hdr-manual{align-self:center;font-size:15px;color:var(--ink-2);text-underline-offset:3px}
+.hdr-manual:hover{color:var(--ink)}
+.hdr-v2{flex-basis:100%;font-weight:400}
+.hdr-v2 summary{cursor:pointer;font-weight:700;text-decoration:underline;text-underline-offset:3px;width:max-content;max-width:100%}
+.hdr-v2 ul{margin:6px 0 4px;padding-left:20px;display:grid;gap:3px}
 .hdr-stats{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;margin-top:18px;font-size:15.5px;color:var(--ink-2)}
 .hdr-stats b{color:var(--ink);font-variant-numeric:tabular-nums}
 .hdr-stat-warn b{color:var(--warn)}
@@ -313,7 +338,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </style>
 
 <a class="hdr-skip" href="#hdr">Skip to content</a>
-<div class="hdr-proto" role="note"><div class="wrap">Prototype · IPRO peer test <span>A proposed new section for the Elevate site. Not the live site; program data is illustrative.</span></div></div>
+<div class="hdr-proto" role="note"><div class="wrap">Prototype v2 · IPRO peer test <span>Revised after Week 12 peer testing. Not the live site; program data is illustrative.</span><details class="hdr-v2"><summary>What changed in v2</summary><ul><li>Deadline calendar is now a List | Calendar toggle at the top of the programs (Victor)</li><li>"Sign in with Portal" is the main button in the header (Brady, Sara)</li><li>New "International students" filter, CPT badges and a sidebar CPT box (Sara)</li><li>Copy covers all four years, plus full-time jobs and grad school prep for juniors and seniors (Hinelben)</li><li>Shorter profile: required picks first, interests and name optional; intro box hides once you have a profile (Kenny)</li><li>Each program card shows your next checklist step (our "next steps" test criterion)</li><li>Program type filter moved to the top of the list with bigger chips (Sara)</li><li>Agent updates no longer redraw the whole list or mark random programs "Updated"</li><li>Bookmark icon used everywhere for saving</li><li>Floating "Saved" button on phones, plus a .ics download of all saved deadlines (Victor)</li></ul></details></div></div>
 <div class="hdr-util"><div class="wrap">
   <a href="#" data-proto>For Faculty &amp; Staff</a><a href="#" data-proto>For Employers</a><a href="#" data-proto>Guests</a><a href="#" data-proto="On the live site your Portal sign-in carries over to Elevate.">Illinois Tech Portal</a>
 </div></div>
@@ -367,10 +392,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </ol>
   <p class="hdr-eyebrow">Elevate Experiences</p>
   <h1 class="hdr-h1" id="hdr-title">Opportunities Hub <span class="hdr-new">New</span></h1>
-  <p class="hdr-lede">Internships, research, fellowships and discovery programs. Built for first- and second-years, with programs for juniors and seniors too. Filtered to your major and eligibility, each with a short list of next steps.</p>
+  <p class="hdr-lede">Internships, research, fellowships, full-time jobs and grad school prep for all four years, from your first externship to your first offer after graduation. Filtered to your major and eligibility, each with a short list of next steps.</p>
   <div class="hdr-ctas">
-    <a class="hdr-btn hdr-btn-p" href="#prof">Find my matches</a>
-    <a class="hdr-btn hdr-btn-s" href="#feed">Browse all programs</a>
+    <button type="button" class="hdr-btn hdr-btn-p" id="hdr-portal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.5 1.7-2.2 3-2.2s2.4.7 3 2.2M14 10h4M14 13.5h3"/></svg><span id="hdr-portal-t">Sign in with Portal to see your matches</span></button>
+    <a class="hdr-btn hdr-btn-s" href="#feed" data-view-go="list">Browse all programs</a>
+    <a class="hdr-manual" href="#prof">or fill in your profile yourself</a>
   </div>
   <div class="hdr-stats" aria-live="polite">
     <span><b id="hdr-open">–</b> programs open now</span>
@@ -378,7 +404,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <span class="hdr-live"><span class="hdr-dot" aria-hidden="true"></span>Tracked live by the Elevate agent</span>
   </div>
 
-  <div class="hdr-about">
+  <div class="hdr-about" id="hdr-about">
     <div class="hdr-about-what">
       <h2>New to Elevate?</h2>
       <p><strong>Elevate is Illinois Tech's four-year career-readiness program.</strong> Every undergrad, in any major, gets hands-on experiences, an Elevate Success Coach and digital badges to show employers. You can start in your first year.</p>
@@ -396,8 +422,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <nav class="hdr-toc" aria-label="On this page">
     <span class="hdr-toc-h">On this page</span>
     <a href="#prof"><span>1</span>Tell us about you</a>
-    <a href="#feed"><span>2</span>Programs for you</a>
-    <a href="#cal"><span>3</span>Deadline calendar</a>
+    <a href="#feed" data-view-go="list"><span>2</span>Programs for you</a>
+    <a href="#feed" data-view-go="cal"><span>3</span>Deadline calendar</a>
     <a href="#res"><span>4</span>Resources</a>
   </nav>
 </section>
@@ -442,6 +468,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     document.getElementById('hdr-closing').textContent=closing;
   }
   stats();
+
+  // v2: Portal sign-in is the main hero action; it opens the Portal consent step in the profile card
+  function hasProf(){return !!(window.EH&&EH.profile&&EH.profile.year);}
+  document.getElementById('hdr-portal').addEventListener('click',function(){
+    var form=document.getElementById('prof-form');
+    if(form&&form.hidden){var ed=document.getElementById('prof-edit'); if(ed) ed.click();}
+    var prof=document.getElementById('prof'); if(prof) prof.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){var b=document.getElementById('prof-pbtn'); if(b&&b.offsetParent!==null) b.click();},400);
+  });
+  // v2: the "New to Elevate?" box hides once a student has a profile
+  function syncHero(){
+    var a=document.getElementById('hdr-about'); if(a) a.hidden=hasProf();
+    var t=document.getElementById('hdr-portal-t'); if(t) t.textContent=hasProf()?'Update my profile from Portal':'Sign in with Portal to see your matches';
+  }
+  syncHero(); window.addEventListener('eh:profile',syncHero);
 })();
 </script>
 <style>
@@ -507,7 +548,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @keyframes prof-spin{to{transform:rotate(360deg)}}
 .prof-done{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:.92rem;font-weight:600;min-height:32px}
 .prof-done svg{color:var(--ok);flex:none}
-.prof-or{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--ink-2);font-size:.85rem}
+.prof-or{display:flex;align-items:center;gap:12px;margin:12px 0;color:var(--ink-2);font-size:.78rem}
 .prof-or::before,.prof-or::after{content:"";flex:1;height:1px;background:var(--line)}
 .prof-from{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700;line-height:1.4;color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,transparent);vertical-align:1px;white-space:nowrap}
 .prof-summary .prof-from{margin-left:0}
@@ -574,11 +615,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
         <div class="prof-grid">
           <div class="prof-field">
-            <label class="prof-label" for="prof-name">First name <span class="prof-opt">(optional)</span><span class="prof-from" id="prof-from-name" hidden><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>From Portal</span></label>
-            <input class="prof-input" id="prof-name" name="name" type="text" autocomplete="given-name" maxlength="40" placeholder="e.g. Ana">
-          </div>
-
-          <div class="prof-field">
             <span class="prof-label" id="prof-year-lbl">Year <span class="prof-opt">(1 of 3)</span><span class="prof-from" id="prof-from-year" hidden><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>From Portal</span></span>
             <div class="prof-seg prof-seg--year" role="radiogroup" aria-labelledby="prof-year-lbl" id="prof-year">
               <button type="button" role="radio" aria-checked="false" data-v="1st">1st<span class="prof-yr">-year</span></button>
@@ -593,7 +629,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <select class="prof-select" id="prof-major" name="major"></select>
           </div>
 
-          <div class="prof-field">
+          <div class="prof-field prof-field--full">
             <span class="prof-label" id="prof-cit-lbl">Citizenship / work status <span class="prof-opt">(3 of 3)</span><span class="prof-from" id="prof-from-cit" hidden><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>From Portal</span></span>
             <div class="prof-seg" role="radiogroup" aria-labelledby="prof-cit-lbl" id="prof-cit">
               <button type="button" role="radio" aria-checked="false" data-v="us">US citizen</button>
@@ -603,9 +639,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           </div>
 
           <div class="prof-field prof-field--full">
-            <span class="prof-label" id="prof-int-lbl">Interests <span class="prof-opt">(pick any)</span></span>
+            <span class="prof-label" id="prof-int-lbl">Interests <span class="prof-opt">(optional, sharpens your matches)</span></span>
             <span class="prof-hint" id="prof-hint" hidden>Last step: pick a few interests</span>
             <div class="prof-chips" role="group" aria-labelledby="prof-int-lbl" aria-describedby="prof-hint" id="prof-chips"></div>
+          </div>
+
+          <div class="prof-field">
+            <label class="prof-label" for="prof-name">First name <span class="prof-opt">(optional)</span><span class="prof-from" id="prof-from-name" hidden><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>From Portal</span></label>
+            <input class="prof-input" id="prof-name" name="name" type="text" autocomplete="given-name" maxlength="40" placeholder="e.g. Ana">
           </div>
         </div>
 
@@ -825,6 +866,25 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .feed-save svg{width:18px;height:18px}
 .feed-empty{grid-column:1/-1;text-align:center;padding:40px 16px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--ink-2)}
 .feed-empty button{margin-top:10px}
+/* v2 additions */
+.feed-row-h{font:700 12.5px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-right:4px}
+#feed-types .feed-tchip{font-size:.95rem;padding:8px 14px;min-height:42px}
+#feed-types .feed-tchip svg{width:18px;height:18px}
+.feed-intlchip{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.feed-intlchip svg{width:16px;height:16px;flex:none}
+.feed-intlnote{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;padding:12px 14px;border-radius:var(--radius);font-size:.92rem;border:1px solid var(--line);border-color:color-mix(in srgb,var(--warn) 40%,var(--surface));background:color-mix(in srgb,var(--warn) 10%,var(--surface))}
+.feed-intlnote svg{flex:none;width:20px;height:20px;color:var(--warn);margin-top:1px}
+.feed-intlnote a{color:var(--brand);font-weight:600}
+.feed-viewseg button{min-height:42px;padding:6px 20px;font-size:.98rem;font-weight:700}
+.feed-next{display:grid;gap:2px;font-size:.86rem;line-height:1.35;padding:8px 10px;border-radius:8px;background:var(--surface-2);border-left:3px solid var(--accent)}
+.feed-next-h{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.feed-next-d{font-size:.78rem;color:var(--ink-2)}
+.feed-next-done{display:block;border-left-color:var(--ok)}
+.feed-next-done b{color:var(--ok)}
+.feed-t-job{--tc:color-mix(in srgb,var(--ok) 55%,var(--accent))}
+.feed-t-grad{--tc:color-mix(in srgb,var(--accent) 55%,var(--brand))}
+#feed-cal-slot #cal{padding:0}
+#feed-cal-slot .cal-head h2{display:none}
 @media(prefers-reduced-motion:reduce){.feed-dot::after{animation:none}}
 </style>
 
@@ -835,6 +895,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <h2>Live early-career programs</h2>
         <p class="feed-sub">Our agent watches IIT offices and external program pages, then flags what's new, what changed, and what fits you.</p>
       </div>
+      <div class="feed-seg feed-viewseg" role="group" aria-label="View programs as">
+        <button type="button" data-feed-view="list" aria-pressed="true">List</button>
+        <button type="button" data-feed-view="cal" aria-pressed="false">Calendar</button>
+      </div>
     </div>
 
     <div class="feed-agent" role="status" aria-live="polite">
@@ -843,7 +907,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <span class="feed-log" id="feed-log">Scanning sources…</span>
     </div>
 
+    <div id="feed-list">
     <div class="feed-controls">
+      <div class="feed-row" id="feed-types" role="group" aria-label="Program type"></div>
       <div class="feed-row">
         <input class="feed-search" id="feed-q" type="search" placeholder="Search programs, orgs, interests…" aria-label="Search programs">
         <select class="feed-select" id="feed-sort" aria-label="Sort">
@@ -851,13 +917,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <option value="deadline">Deadline soonest</option>
         </select>
       </div>
-      <div class="feed-row" id="feed-types" role="group" aria-label="Program type"></div>
       <div class="feed-row">
         <div class="feed-seg" id="feed-src" role="group" aria-label="Source">
           <button type="button" data-v="All" aria-pressed="true">All</button>
           <button type="button" data-v="IIT" aria-pressed="false">IIT</button>
           <button type="button" data-v="External" aria-pressed="false">External</button>
         </div>
+        <button type="button" class="feed-chip feed-intlchip" id="feed-intl" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>International students</button>
         <span class="feed-spacer"></span>
         <label class="feed-toggle"><input type="checkbox" id="feed-elig"> Eligible for me only</label>
       </div>
@@ -866,6 +932,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div id="feed-prompt-slot"></div>
     <p class="feed-meta" id="feed-meta"></p>
     <div class="feed-grid" id="feed-grid"></div>
+    </div>
+    <div id="feed-cal-slot" hidden></div>
   </div>
 </section>
 
@@ -873,8 +941,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 (function(){
   const EH = window.EH;
   const TODAY = new Date('2026-11-02T00:00:00');
-  const TYPES = ['Internship','Fellowship','Research','Discovery program','Externship'];
-  const st = {q:'', types:new Set(), src:'All', elig:!!EH.profile, sort:EH.profile?'match':'deadline'};
+  const TYPES = ['Internship','Fellowship','Research','Discovery program','Externship','Full-time job','Grad school prep'];
+  const st = {q:'', types:new Set(), src:'All', intl:false, elig:!!EH.profile, sort:EH.profile?'match':'deadline'};
   const $ = id => document.getElementById(id);
   const grid=$('feed-grid'), meta=$('feed-meta'), slot=$('feed-prompt-slot');
   let flashId=null;
@@ -892,7 +960,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     'Fellowship':['fellow','<circle cx="12" cy="9" r="6"/><path d="M8.5 13.9 7 22l5-3 5 3-1.5-8.1"/>'],
     'Research':['research','<path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/>'],
     'Discovery program':['discovery','<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>'],
-    'Externship':['extern','<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>']
+    'Externship':['extern','<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'],
+    'Full-time job':['job','<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5M9 10h.01M15 10h.01M9 13h.01M15 13h.01"/>'],
+    'Grad school prep':['grad','<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/>']
   };
   const TDEF = ['other','<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>'];
   const tMeta = t => TMETA[t]||TDEF;
@@ -909,17 +979,29 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   }
   EH.typeTag = typeTag; EH.needsCPT = needsCPT;
   const CPT_TIP='International students need CPT authorization before a US internship';
+  const CPT_URL='https://www.iit.edu/international-center/student-employment/curricular-practical-training-cpt';
   const globeIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>';
+
+  const INTL_NOTE=`<div class="feed-intlnote">${globeIc}<span><b>Showing programs open to international students.</b> US internships and co-ops need CPT authorization before your first day, and full-time jobs after graduation usually use OPT. <a href="${CPT_URL}" target="_blank" rel="noopener noreferrer">Read the CPT guide</a></span></div>`;
 
   // type chips
   const typeBox=$('feed-types');
-  typeBox.innerHTML = TYPES.map(t=>`<button type="button" class="feed-chip feed-tchip feed-t-${tMeta(t)[0]}" data-t="${t}" aria-pressed="false">${tIcon(t)}${t}</button>`).join('');
+  typeBox.innerHTML = '<span class="feed-row-h">Program type</span>' + TYPES.map(t=>`<button type="button" class="feed-chip feed-tchip feed-t-${tMeta(t)[0]}" data-t="${t}" aria-pressed="false">${tIcon(t)}${t}</button>`).join('');
   typeBox.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;
     const t=b.dataset.t; st.types.has(t)?st.types.delete(t):st.types.add(t); b.setAttribute('aria-pressed',st.types.has(t)); render();});
   $('feed-src').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;
     st.src=b.dataset.v; [...$('feed-src').children].forEach(x=>x.setAttribute('aria-pressed',x===b)); render();});
   $('feed-q').addEventListener('input',e=>{st.q=e.target.value.trim().toLowerCase(); render();});
   $('feed-sort').addEventListener('change',e=>{st.sort=e.target.value; render();});
+  // v2: international students filter (also reachable from the sidebar CPT box)
+  const intlBtn=$('feed-intl');
+  function setIntl(on){st.intl=on; intlBtn.setAttribute('aria-pressed',String(on)); render();}
+  intlBtn.addEventListener('click',()=>setIntl(!st.intl));
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-intl-filter]'); if(!t) return;
+    e.preventDefault(); if(EH.setView) EH.setView('list'); setIntl(true);
+    const f=$('feed'); if(f) f.scrollIntoView({behavior:'smooth',block:'start'});
+  });
   const eligBox=$('feed-elig'); eligBox.checked=st.elig;
   eligBox.addEventListener('change',e=>{st.elig=e.target.checked; render();});
   $('feed-sort').value=st.sort;
@@ -933,6 +1015,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <text x="22" y="26" text-anchor="middle">${score}</text></svg>`;
   }
   const bookmark = on => `<svg viewBox="0 0 24 24" fill="${on?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>`;
+
+  // v2: the first unfinished checklist step, shown right on the card
+  function nextHtml(p,dl){
+    if(EH.applied&&EH.applied.has(p.id)) return `<div class="feed-next feed-next-done"><b>Applied ✓</b> Track it in My saved programs</div>`;
+    const steps=p.steps||[]; if(!steps.length) return '';
+    let done=[]; try{done=JSON.parse(localStorage.getItem('eh_steps_v1_'+p.id))||[]}catch(e){done=[]}
+    if(!Array.isArray(done)) done=[];
+    const i=steps.findIndex((s,j)=>done.indexOf(j)<0);
+    if(i<0) return `<div class="feed-next feed-next-done"><b>All ${steps.length} steps done.</b> Ready to apply</div>`;
+    const n=steps.length, span=Math.max(0,dl), off=span>0?Math.max(0,Math.floor(span*(i+1)/(n+1))):0;
+    const by=new Date(TODAY.getTime()+off*86400000).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    const k=steps.filter((s,j)=>done.indexOf(j)>-1).length;
+    return `<div class="feed-next"><span class="feed-next-h">Next step${k?' · '+k+' of '+n+' done':''}</span>${esc(steps[i])}<span class="feed-next-d">Aim to finish by ${by}</span></div>`;
+  }
 
   function card(p){
     const has=!!EH.profile, m=EH.match(p), dl=daysLeft(p.deadline), s=statusOf(p), saved=EH.saved.has(p.id);
@@ -948,7 +1044,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       }
     }
     const dlTxt = dl<0?'Closed':dl===0?'Due today':dl+' days left';
-    const cpt = has && EH.profile.citizenship==='intl' && m.eligible && needsCPT(p);
+    const viewerIntl = st.intl || (has && EH.profile.citizenship==='intl');
+    const cpt = viewerIntl && (!has || m.eligible) && needsCPT(p);
     return `<article class="feed-card${dim?' feed-dim':''}${flashId===p.id?' feed-flash':''}" data-id="${esc(p.id)}">
       <div class="feed-top">
         ${typeTag(p.type)}
@@ -963,7 +1060,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <span>${p.paid?'Paid':'Unpaid'} · ${esc(p.location)}</span>
         ${cpt?`<span class="feed-cpt" title="${CPT_TIP}">${globeIc}CPT needed</span>`:''}
       </div>
-      <div class="feed-checked">Checked ${ago(p.lastChecked)}</div>
+      ${nextHtml(p,dl)}
+      <div class="feed-checked" data-checked="${esc(p.id)}">Checked ${ago(p.lastChecked)}</div>
       <div class="feed-actions">
         <button type="button" class="feed-btn" data-open="${esc(p.id)}">View next steps</button>
         <button type="button" class="feed-save" data-save="${esc(p.id)}" aria-pressed="${saved}" aria-label="${saved?'Remove from saved':'Save program'}">${bookmark(saved)}</button>
@@ -973,12 +1071,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   function render(){
     const has=!!EH.profile;
-    slot.innerHTML = has ? '' : `<div class="feed-prompt"><span>Add your profile to see matches and filter by eligibility.</span><a href="#prof">Add your profile →</a></div>`;
+    slot.innerHTML = (st.intl ? INTL_NOTE : '') + (has ? '' : `<div class="feed-prompt"><span>Add your profile to see matches and filter by eligibility.</span><a href="#prof">Add your profile →</a></div>`);
     eligBox.disabled=!has; eligBox.parentElement.style.opacity=has?'':'.5';
     let list = (EH.programs||[]).map(p=>({p,m:EH.match(p)}));
     list = list.filter(({p,m})=>{
       if(st.src!=='All' && p.source!==st.src) return false;
       if(st.types.size && !st.types.has(p.type)) return false;
+      if(st.intl && p.citizenship.indexOf('intl')<0) return false;
       if(has && st.elig && !m.eligible) return false;
       if(st.q){const hay=(p.title+' '+p.org+' '+p.type+' '+p.interests.join(' ')+' '+p.summary+' '+p.location).toLowerCase(); if(!hay.includes(st.q)) return false;}
       return true;
@@ -1000,7 +1099,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     const o=e.target.closest('[data-open]'); if(o){EH.open(o.dataset.open);return;}
     const s=e.target.closest('[data-save]'); if(s){EH.toggleSave(s.dataset.save);return;}
     if(e.target.id==='feed-reset'){
-      st.q='';st.types.clear();st.src='All';st.elig=false;
+      st.q='';st.types.clear();st.src='All';st.elig=false;st.intl=false;intlBtn.setAttribute('aria-pressed','false');
       $('feed-q').value='';eligBox.checked=false;
       typeBox.querySelectorAll('[data-t]').forEach(b=>b.setAttribute('aria-pressed','false'));
       [...$('feed-src').children].forEach(x=>x.setAttribute('aria-pressed',x.dataset.v==='All'));
@@ -1013,30 +1112,41 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     render();
   });
   window.addEventListener('eh:saved',render);
+  // v2: redraw only the card that changed
+  function updateCard(id){
+    const el=grid.querySelector('.feed-card[data-id="'+CSS.escape(String(id))+'"]');
+    if(!el||el.contains(document.activeElement)) return;
+    const p=(EH.programs||[]).find(x=>String(x.id)===String(id)); if(!p) return;
+    const t=document.createElement('div'); t.innerHTML=card(p); el.replaceWith(t.firstElementChild);
+  }
+  window.addEventListener('eh:steps',e=>{if(e.detail) updateCard(e.detail.id);});
+  window.addEventListener('eh:applied',e=>{if(e.detail) updateCard(e.detail.id);});
 
   // simulated agent activity
   const logEl=$('feed-log');
   const pick=()=>{const a=EH.programs||[];return a[Math.floor(Math.random()*a.length)];};
   let tick=0;
+  // v2: slower, and it no longer rewrites a program's status or redraws the whole list
   function step(){
     const p=pick(); if(!p) return;
     tick++;
-    let msg, mutate=false;
-    const r=Math.random();
-    if(tick%4===0 || r<0.2){ mutate=true; msg=`Detected change on ${p.org} — details updated for “${p.title}”`; }
-    else if(r<0.35){ mutate=true; msg=`Deadline re-verified for ${p.title}: ${fmtDate(p.deadline)}`; }
-    else if(r<0.45){ msg=`Cross-checked eligibility rules for ${p.title}`; }
-    else if(r<0.55 && p.status==='new'){ msg=`New: ${p.title} (${p.org}) added to tracking`; p.lastChecked=0; }
-    else { msg=`Checked ${p.org} · ${p.title} — no change`; p.lastChecked=0; }
+    const r=Math.random(); let msg, flash=false;
+    if(r<0.35){ flash=true; msg=`Deadline re-verified for ${p.title}: ${fmtDate(p.deadline)}`; }
+    else if(r<0.55){ msg=`Cross-checked eligibility rules for ${p.title}`; }
+    else { msg=`Checked ${p.org} · ${p.title}: no change`; }
+    p.lastChecked=0;
     logEl.classList.add('feed-fade');
     setTimeout(()=>{logEl.textContent=msg;logEl.classList.remove('feed-fade');},300);
-    if(mutate){ p.lastChecked=0; if(p.status!=='closing') p.status='updated'; flashId=p.id; }
-    if(!grid.contains(document.activeElement)) render();
-    if(mutate) setTimeout(()=>{flashId=null; const el=grid.querySelector('.feed-flash'); if(el) el.classList.remove('feed-flash');},1600);
+    if(flash) flashId=p.id;
+    updateCard(p.id);
+    if(flash) setTimeout(()=>{flashId=null; const el=grid.querySelector('.feed-card[data-id="'+CSS.escape(String(p.id))+'"]'); if(el) el.classList.remove('feed-flash');},1600);
   }
-  // age lastChecked every minute
-  setInterval(()=>{(EH.programs||[]).forEach(p=>p.lastChecked=(p.lastChecked||0)+1); render();},60000);
-  setInterval(step,3200);
+  // age "Checked" labels every minute without redrawing cards
+  setInterval(()=>{
+    (EH.programs||[]).forEach(p=>p.lastChecked=(p.lastChecked||0)+1);
+    grid.querySelectorAll('[data-checked]').forEach(el=>{const p=(EH.programs||[]).find(x=>String(x.id)===el.dataset.checked); if(p) el.textContent='Checked '+ago(p.lastChecked);});
+  },60000);
+  setInterval(step,25000);
   render();
   setTimeout(()=>{logEl.textContent=`Scan complete — ${(EH.programs||[]).length} programs tracked across IIT and external sources`;},800);
 })();
@@ -1060,6 +1170,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cal-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
 .cal-seg button{border:0;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.85rem;min-height:36px}
 .cal-seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.cal-ics{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:.85rem}
+.cal-ics:hover{border-color:var(--brand);color:var(--brand)}
 .cal-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 12px;padding:0;list-style:none;font-size:.82rem;color:var(--ink-2)}
 .cal-legend li{display:inline-flex;align-items:center;gap:6px}
 .cal-sw{flex:none;width:22px;height:12px;border-radius:4px;border:1px solid var(--ink-2);background:var(--surface)}
@@ -1118,7 +1230,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="wrap">
     <div class="cal-head">
       <h2 id="cal-title">Deadline calendar</h2>
-      <p class="cal-sub">Every program deadline at a glance. Starred programs are highlighted.</p>
+      <p class="cal-sub">Every program deadline at a glance. Saved (bookmarked) programs are highlighted.</p>
     </div>
 
     <div class="cal-card">
@@ -1136,10 +1248,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <button type="button" data-v="mine" aria-pressed="false">My matches</button>
           <button type="button" data-v="all" aria-pressed="true">All programs</button>
         </div>
+        <button type="button" class="cal-ics" data-ics-saved>Download saved deadlines (.ics)</button>
       </div>
 
       <ul class="cal-legend" aria-label="Legend">
-        <li><span class="cal-sw cal-sw-saved" aria-hidden="true"></span>Saved (starred)</li>
+        <li><span class="cal-sw cal-sw-saved" aria-hidden="true"></span>Saved (bookmarked)</li>
         <li><span class="cal-sw" aria-hidden="true"></span>Other deadlines</li>
         <li><span class="cal-sw cal-sw-soon" aria-hidden="true"></span>Closing within 14 days</li>
         <li><span aria-hidden="true" class="cal-tick">✓</span>Applied</li>
@@ -1457,6 +1570,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     dollar:'<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
     people:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5a5 5 0 0 1 5.5 5"/>'
   };
+  P.cap='<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/>';
   P.spark='<path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/>';
   const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>';
   // [icon, name, use-it-when, tag, categories, main {label,url}, extra links [{label,url}], chips]
@@ -1466,6 +1580,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     {ic:'globe',n:'Office of Global Services',u:'you’re an international student and need CPT for an internship or OPT before a US job.',t:'Work authorization',c:['work'],go:'Read the CPT guide',url:'https://www.iit.edu/international-center/student-employment/curricular-practical-training-cpt',intl:true},
     {ic:'pen',n:'Communications Lab',u:'you’re drafting a cover letter, personal statement or research abstract. (Formerly the Writing Center.)',t:'Writing',c:['resume'],go:'Book a session',url:'https://illinoistech.mywconline.com/',alt:{l:'About the lab',url:'https://www.iit.edu/hass/student-resources/writing-center'}},
     {ic:'bulb',n:'Kaplan Institute',u:'you have an idea to prototype or want IPRO, design and startup programs.',t:'Innovation',c:['network'],go:'Explore Kaplan',url:'https://www.iit.edu/kaplan'},
+    {ic:'cap',n:'Grad school & first-job advising',u:'you’re a junior or senior planning grad school, a national fellowship or your first full-time offer.',t:'Next steps',c:['resume','jobs','research'],go:'Talk to Career Services',url:'https://www.iit.edu/career-services'},
     {ic:'book',n:'Galvin Library',u:'you need research databases, a subject librarian or help citing sources.',t:'Research',c:['research'],go:'Open the library',url:'https://library.iit.edu/'}
   ];
   const EXT=[
@@ -1595,6 +1710,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 }
 @media (max-width:999px){.side-banner .side-alert-btn{padding:0 14px}}
 .side-fx:focus{outline:none}
+.side-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.side-mini{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px;text-decoration:none}
+.side-mini:hover{border-color:var(--brand);color:var(--brand)}
+.side-intl{border-left:4px solid var(--warn)}
+.side-intl .side-acts{margin-top:0}
+.fab-saved{position:fixed;right:max(16px, env(safe-area-inset-right, 0px));bottom:calc(16px + env(safe-area-inset-bottom, 0px));z-index:80;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;border:0;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:15px;box-shadow:var(--shadow)}
+.fab-saved svg{width:18px;height:18px;flex:none}
+.fab-saved b{background:var(--brand-ink);color:var(--brand);border-radius:999px;padding:2px 8px;font-size:13px;font-variant-numeric:tabular-nums}
+@media (min-width:1000px){.fab-saved{display:none!important}}
 
 .ft{background:var(--nav);color:var(--nav-ink);border-top:4px solid var(--brand);margin-top:8px}
 .ft .wrap{padding-block:32px 20px}
@@ -1622,8 +1746,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <section class="side-box" aria-labelledby="side-saved-h">
     <h2 id="side-saved-h">My saved programs <span class="side-count" id="side-count">0</span></h2>
     <ul class="side-list" id="side-list"></ul>
-    <p class="side-empty" id="side-empty">Tap the star on any program to keep it here with its deadline.</p>
+    <p class="side-empty" id="side-empty">Tap the bookmark on any program to keep it here with its deadline.</p>
     <button class="side-all" id="side-all" type="button" hidden>View all saved →</button>
+    <div class="side-acts"><button class="side-mini" type="button" data-view-go="cal">View calendar</button><button class="side-mini" type="button" data-ics-saved>Download .ics</button></div>
+  </section>
+
+  <section class="side-box side-intl" aria-labelledby="side-intl-h">
+    <h2 id="side-intl-h">International students</h2>
+    <p>US internships and co-ops need CPT before your first day. Full-time jobs after graduation usually use OPT.</p>
+    <div class="side-acts"><a class="side-mini side-mini-a" href="https://www.iit.edu/international-center/student-employment/curricular-practical-training-cpt" target="_blank" rel="noopener noreferrer">CPT guide</a><button class="side-mini" type="button" data-intl-filter>Programs open to me</button></div>
   </section>
 
   <section class="side-box" aria-labelledby="side-help-h">
@@ -1639,6 +1770,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </aside>
 </div>
 
+<button class="fab-saved" id="fab-saved" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Saved <b>0</b></button>
+
 <footer class="ft"><div class="wrap">
   <div class="ft-cols">
     <div>
@@ -1649,7 +1782,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div><h2>Campus</h2><ul><li><a href="#" data-proto>Emergency Information</a></li><li><a href="#" data-proto>Employment</a></li><li><a href="#" data-proto>Alumni</a></li><li><a href="#" data-proto>Illinois Tech Portal</a></li></ul></div>
     <div><h2>Web links</h2><ul><li><a href="#" data-proto>Privacy</a></li><li><a href="#" data-proto>Accessibility</a></li><li><a href="#" data-proto>Student Non-Discrimination Policy</a></li></ul></div>
   </div>
-  <div class="ft-bottom"><span>Prototype by IPRO team Elevate for Week 12 peer testing · Not an official Illinois Tech page</span><span>Program data is illustrative; live tracking is simulated.</span></div>
+  <div class="ft-bottom"><span>Prototype v2 by IPRO team Elevate, revised after Week 12 peer testing · Not an official Illinois Tech page</span><span>Program data is illustrative; live tracking is simulated.</span></div>
 </div></footer>
 
 <script>
@@ -1818,7 +1951,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
     <div class="det-body" id="det-body"></div>
     <div class="det-foot">
-      <button class="det-btn" id="det-save" type="button" aria-pressed="false">☆ Save</button>
+      <button class="det-btn" id="det-save" type="button" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Save</button>
       <a class="det-btn" id="det-ics" href="#" target="_blank" rel="noopener noreferrer">Add deadline to Google Calendar</a>
       <button class="det-btn det-btn-pri" id="det-go" type="button">Go to application →</button>
     </div>
@@ -1998,7 +2131,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     if(!cur) return;
     var s=window.EH&&window.EH.saved&&window.EH.saved.has(cur.id);
     saveBtn.setAttribute('aria-pressed',s?'true':'false');
-    saveBtn.textContent=s?'★ Saved':'☆ Save';
+    saveBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="'+(s?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>'+(s?'Saved':'Save');
   }
 
   function icsDate(d){return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')}
@@ -2339,7 +2472,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       body.innerHTML='<div class="sv-empty"><h2>No saved programs yet</h2><p>Tap the bookmark on any program in the feed to keep it here with its deadline and checklist progress.</p><button type="button" class="sv-btn sv-pri" id="sv-browse">Browse programs</button></div>';
       return;
     }
-    var h='<p class="sv-sum"><span><b>'+n+'</b> saved</span><span class="sv-sum-warn"><b>'+g.soon.length+'</b> closing soon</span><span class="sv-sum-ok"><b>'+g.applied.length+'</b> applied</span></p>';
+    var h='<p class="sv-sum"><span><b>'+n+'</b> saved</span><span class="sv-sum-warn"><b>'+g.soon.length+'</b> closing soon</span><span class="sv-sum-ok"><b>'+g.applied.length+'</b> applied</span></p><p style="margin:-10px 0 22px"><button type="button" class="sv-btn" data-ics-saved>'+CAL+'Download all saved deadlines (.ics)</button></p>';
     h+=group('Closing soon','Due in the next 14 days and not applied yet. Start with these.','sv-gh-warn',CLOCK,g.soon,true);
     h+=group(g.soon.length?'Everything else':'Upcoming deadlines','','',STAR,g.rest,false);
     h+=group('Applied','Nice work. Keep these here to track what you sent.','sv-gh-ok',CHECK,g.applied,false);
@@ -3270,4 +3403,70 @@ select.rs-in{appearance:none;-webkit-appearance:none;padding-right:34px;backgrou
 })();
 </script>
 
+<script>
+/* v2: List | Calendar toggle, .ics download of saved deadlines, floating Saved button */
+(function(){
+  var EH=window.EH; if(!EH) return;
+  var $=function(id){return document.getElementById(id)};
+
+  // the calendar now lives inside the programs section, behind a List | Calendar toggle
+  var cal=$('cal'),slot=$('feed-cal-slot'),list=$('feed-list');
+  if(cal&&slot) slot.appendChild(cal);
+  function setView(v){
+    var c=v==='cal'; if(list) list.hidden=c; if(slot) slot.hidden=!c;
+    document.querySelectorAll('[data-feed-view]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-feed-view')===(c?'cal':'list')))});
+  }
+  EH.setView=setView;
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-feed-view]'); if(b){setView(b.getAttribute('data-feed-view'));return;}
+    var g=e.target.closest('[data-view-go]');
+    if(g){e.preventDefault();setView(g.getAttribute('data-view-go'));var f=$('feed');if(f)f.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+  setView(location.hash==='#cal'?'cal':'list');
+
+  // one .ics file with every saved deadline (3-day reminder on each)
+  function pad(n){return String(n).padStart(2,'0')}
+  function ymd(s){return s.replace(/-/g,'')}
+  function nextDay(s){var d=new Date(s+'T00:00:00');d.setDate(d.getDate()+1);return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())}
+  function icsEsc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/[;,]/g,'\\$&').replace(/\n/g,'\\n')}
+  function download(){
+    var saved=(EH.programs||[]).filter(function(p){return EH.saved.has(p.id)&&p.deadline});
+    if(!saved.length){EH.toast('Save a program first, then download its deadline.');return;}
+    var now=new Date(),stamp=now.getUTCFullYear()+pad(now.getUTCMonth()+1)+pad(now.getUTCDate())+'T'+pad(now.getUTCHours())+pad(now.getUTCMinutes())+'00Z';
+    var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Elevate Opportunities Hub//Prototype v2//EN','CALSCALE:GREGORIAN','X-WR-CALNAME:Elevate saved deadlines'];
+    saved.forEach(function(p){
+      L.push('BEGIN:VEVENT','UID:'+p.id+'@elevate-hub.example','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+ymd(p.deadline),'DTEND;VALUE=DATE:'+nextDay(p.deadline),
+        'SUMMARY:'+icsEsc('Deadline: '+p.title),
+        'DESCRIPTION:'+icsEsc((p.org||'')+'\n\nNext steps:\n'+(p.steps||[]).map(function(s,i){return (i+1)+'. '+s}).join('\n')+'\n\nFrom the Elevate Opportunities Hub'),
+        'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(p.title+' closes in 3 days'),'TRIGGER:-P3D','END:VALARM','END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    try{
+      var url=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));
+      var a=document.createElement('a');a.href=url;a.download='elevate-saved-deadlines.ics';document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url)},1500);
+      EH.toast(saved.length+' deadline'+(saved.length>1?'s':'')+' downloaded. Open the file to add them to your calendar.');
+    }catch(err){EH.toast('Download is blocked here. Use "Add to Google Calendar" on each program instead.');}
+  }
+  document.addEventListener('click',function(e){if(e.target.closest('[data-ics-saved]')){e.preventDefault();download();}});
+
+  // floating Saved button on phones and tablets, where the sidebar sits at the bottom
+  var fab=$('fab-saved');
+  function syncFab(){if(!fab)return;var n=EH.saved.size;fab.hidden=n===0;fab.querySelector('b').textContent=n;fab.setAttribute('aria-label','My saved programs, '+n+' saved');}
+  if(fab) fab.addEventListener('click',function(){window.dispatchEvent(new CustomEvent('eh:saved-page'))});
+  window.addEventListener('eh:saved',syncFab); syncFab();
+})();
+</script>
+<nav class="vsw" aria-label="Prototype version">
+  <span class="vsw-l">Version</span>
+  <a href="v1.html">v1</a>
+  <a href="index.html" aria-current="page">v2</a>
+</nav>
+<style>
+.vsw{position:fixed;left:max(12px, env(safe-area-inset-left, 0px));bottom:calc(12px + env(safe-area-inset-bottom, 0px));z-index:70;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:var(--nav);color:var(--nav-ink);box-shadow:var(--shadow);font:600 14px/1 var(--font)}
+.vsw-l{padding:0 8px 0 10px;opacity:.75;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.vsw a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:32px;padding:0 10px;border-radius:999px;color:var(--nav-ink);text-decoration:none}
+.vsw a:hover{background:var(--nav-2)}
+.vsw a[aria-current]{background:var(--brand);color:var(--brand-ink)}
+</style>
 </body></html>
