@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How the Hub Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('eh_theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<style>
+:root{
+  --bg:#f6f5f4; --surface:#ffffff; --surface-2:#efedeb; --ink:#191717; --ink-2:#595352; --line:#dedad7;
+  --brand:#cc0000; --brand-ink:#ffffff; --brand-soft:#fbeaea; --accent:#23262e; --ok:#1d7a46; --warn:#a35f00;
+  --nav:#16171a; --nav-ink:#f4f2f1; --nav-2:#2a2c31;
+  --radius:10px; --shadow:0 1px 2px rgba(25,23,23,.05),0 8px 24px rgba(25,23,23,.07);
+  --font:"Source Sans 3","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  --font-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121213; --surface:#1b1b1d; --surface-2:#252528; --ink:#f1efee; --ink-2:#aba4a2; --line:#34333a;
+    --brand:#ff5252; --brand-ink:#1d0000; --brand-soft:#3b1d1d; --accent:#c9cfdc; --ok:#5fd18f; --warn:#f0b450;
+    --nav:#0b0b0c; --nav-ink:#f1efee; --nav-2:#232327;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121213; --surface:#1b1b1d; --surface-2:#252528; --ink:#f1efee; --ink-2:#aba4a2; --line:#34333a;
+  --brand:#ff5252; --brand-ink:#1d0000; --brand-soft:#3b1d1d; --accent:#c9cfdc; --ok:#5fd18f; --warn:#f0b450;
+  --nav:#0b0b0c; --nav-ink:#f1efee; --nav-2:#232327;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+section{scroll-margin-top:16px}
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--surface);color:var(--ink);padding:10px 14px}
+.skip:focus{left:16px;top:8px}
+
+.proto{background:var(--accent);color:var(--surface);font-size:14px}
+.proto{padding-block:10px}
+.proto .wrap{display:flex;flex-wrap:wrap;gap:4px 12px}
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-width:0}
+.logo-block{width:40px;height:40px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font:800 15px/1 var(--font-display);flex:none}
+.logo-text{display:flex;align-items:center;gap:10px;font:700 21px/1.1 var(--font-display);white-space:nowrap}
+.logo-text i{width:1px;height:24px;background:var(--line)}
+.logo-text b{color:var(--brand);font-weight:800}
+.btn{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;font-weight:700;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.btn-p{background:var(--brand);color:var(--brand-ink)}
+.btn-p:hover{filter:brightness(.93)}
+@media (max-width:480px){.lt-iit,.logo-text i{display:none}.logo-block{width:34px;height:34px;font-size:13px}.logo-text{font-size:18px}}
+
+.hero{padding-block:32px 8px}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px;font-size:14.5px;color:var(--ink-2);margin:0 0 16px;padding:0;list-style:none}
+.crumbs a{color:var(--ink-2)}
+.crumbs li+li::before{content:"/";margin-right:6px;opacity:.6}
+.crumbs [aria-current]{color:var(--ink);font-weight:600}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:800}
+.lede{font-size:19px;color:var(--ink-2);max-width:64ch;margin:12px 0 0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-block:14px;border-block:1px solid var(--line)}
+.toc a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:600;font-size:15px;text-decoration:none}
+.toc a:hover{border-color:var(--brand)}
+
+.sec{padding-block:44px 8px}
+.sec>h2{font-size:clamp(26px,3.6vw,34px);font-weight:800}
+.sec-sub{color:var(--ink-2);max-width:68ch;margin:8px 0 0}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 0;padding:0;list-style:none;font-size:14.5px;color:var(--ink-2)}
+.legend li{display:inline-flex;align-items:center;gap:8px}
+.sw{width:22px;height:14px;border-radius:4px;border:1.5px solid}
+.sw-stu{background:var(--surface);border-color:var(--ink-2)}
+.sw-hub{background:var(--brand-soft);border-color:var(--brand)}
+.sw-iit{background:color-mix(in srgb,var(--accent) 10%,var(--surface));border-color:var(--accent)}
+.sw-ext{background:color-mix(in srgb,var(--warn) 12%,var(--surface));border-color:var(--warn)}
+.sw-db{background:var(--surface-2);border-color:var(--ink-2);border-style:dashed}
+.flow-fig{margin:14px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+.flow-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.flow-svg{display:block;width:100%;max-width:1000px;min-width:860px;height:auto;margin:0 auto}
+.flow-hint{display:none;margin:10px 2px 0;font-size:14px;color:var(--ink-2)}
+@media (max-width:900px){.flow-hint{display:block}}
+.fc-node rect,.fc-node polygon{stroke-width:1.6}
+.o-stu rect{fill:var(--surface);stroke:var(--ink-2)}
+.o-hub rect{fill:var(--brand-soft);stroke:var(--brand)}
+.o-iit rect{fill:color-mix(in srgb,var(--accent) 10%,var(--surface));stroke:var(--accent)}
+.o-ext rect{fill:color-mix(in srgb,var(--warn) 12%,var(--surface));stroke:var(--warn)}
+.o-db rect{fill:var(--surface-2);stroke:var(--ink-2);stroke-dasharray:6 4}
+.o-dec polygon{fill:var(--surface);stroke:var(--brand)}
+.fc-t{font:700 15px var(--font);fill:var(--ink);text-anchor:middle}
+.fc-d{font:700 14.5px var(--font);fill:var(--ink);text-anchor:middle}
+.fc-s{font:400 13.5px var(--font);fill:var(--ink-2);text-anchor:middle}
+.fc-ln{fill:none;stroke:var(--ink-2);stroke-width:1.6;marker-end:url(#fc-ar)}
+.fc-bus{fill:none;stroke:var(--ink-2);stroke-width:1.6}
+.fc-ah{fill:var(--ink-2)}
+.fc-lab{font:600 13px var(--font);fill:var(--ink-2);text-anchor:middle;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
+.fc-lab-s{text-anchor:start}
+.fc-badge circle{fill:var(--accent)}
+.fc-badge text{font:800 13px var(--font-display);fill:var(--surface);text-anchor:middle}
+
+.notes{margin:16px 0 0;padding-left:20px;max-width:820px;display:grid;gap:6px;color:var(--ink-2);font-size:16px}
+.steps{list-style:none;counter-reset:st;margin:24px 0 0;padding:0;display:grid;gap:12px;max-width:820px}
+.steps>li{counter-increment:st;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.steps>li::before{content:counter(st);width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font:800 14px/1 var(--font-display);margin-top:1px}
+.steps b{display:block;font-size:17px}
+.steps p{margin:2px 0 0;color:var(--ink-2);font-size:16px}
+.steps ul{margin:6px 0 0;padding-left:20px;color:var(--ink-2);font-size:15.5px;display:grid;gap:2px}
+.steps ul b{display:inline;font-size:inherit;color:var(--ink)}
+
+.tbl{width:100%;border-collapse:collapse;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:15.5px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:12px 14px;border-top:1px solid var(--line)}
+.tbl thead th{border-top:0;background:var(--surface-2);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.tbl tbody th{font-weight:700}
+.tbl td{color:var(--ink-2)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.tag-ok{color:var(--ok);border-color:var(--ok)}
+.tag-warn{color:var(--warn);border-color:var(--warn)}
+.tag-red{color:var(--brand);border-color:var(--brand)}
+@media (max-width:760px){
+  .tbl,.tbl tbody,.tbl tr,.tbl th,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl{border:0;background:none}
+  .tbl tbody tr{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;padding:6px 0}
+  .tbl th,.tbl td{border:0;padding:6px 14px}
+  .tbl td[data-l]::before{content:attr(data-l);display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);opacity:.8}
+}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;margin-top:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p{margin:0;color:var(--ink-2);font-size:15.5px}
+.card ul{margin:0;padding-left:20px;color:var(--ink-2);font-size:15.5px;display:grid;gap:4px}
+.card-red h3{color:var(--brand)}
+
+.pipe{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px;counter-reset:pp}
+.pipe li{counter-increment:pp;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 12px}
+.pipe li::before{content:counter(pp);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--surface);font:800 13px/1 var(--font-display);margin-bottom:8px}
+.pipe b{display:block;font-size:16px;line-height:1.25}
+.pipe p{margin:4px 0 8px;font-size:14.5px;color:var(--ink-2);line-height:1.4}
+.who{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.who-agent{background:color-mix(in srgb,var(--ok) 15%,var(--surface));color:var(--ok)}
+.who-person{background:color-mix(in srgb,var(--warn) 15%,var(--surface));color:var(--warn)}
+.who-hub{background:var(--brand-soft);color:var(--brand)}
+
+.api-g th{background:var(--surface-2);font:700 13px var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.api code{font:13.5px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);overflow-wrap:anywhere}
+.m{display:inline-block;min-width:58px;margin-right:6px;font:700 12px/1 ui-monospace,SFMono-Regular,Consolas,monospace;padding:4px 6px;border-radius:5px;background:var(--surface-2);color:var(--ink);text-align:center}
+.m-POST,.m-PUT,.m-PATCH{background:var(--brand-soft);color:var(--brand)}
+.m-DELETE{background:color-mix(in srgb,var(--warn) 16%,var(--surface));color:var(--warn)}
+@media (max-width:760px){.api-g th{border-radius:var(--radius)}}
+
+.tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px;margin:18px 0 0;padding:0;list-style:none}
+.tables li{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.tables code{font:700 14px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink)}
+.tables span{display:block;margin-top:2px;font-size:14.5px;color:var(--ink-2)}
+
+.asks{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;max-width:820px}
+.asks li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.asks svg{width:22px;height:22px;color:var(--brand);margin-top:2px}
+.asks b{display:block}
+.asks span{color:var(--ink-2);font-size:15.5px}
+.src{margin:14px 0 0;padding-left:20px;color:var(--ink-2);font-size:15.5px;display:grid;gap:4px}
+.src a{color:var(--ink);text-underline-offset:3px}
+
+.ft{background:var(--nav);color:var(--nav-ink);border-top:4px solid var(--brand);margin-top:56px}
+.ft .wrap{padding-block:24px 72px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14.5px;opacity:.85}
+.vsw{position:fixed;left:max(12px, env(safe-area-inset-left, 0px));bottom:calc(12px + env(safe-area-inset-bottom, 0px));z-index:70;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:var(--nav);color:var(--nav-ink);box-shadow:var(--shadow);font:600 14px/1 var(--font)}
+.vsw-l{padding:0 8px 0 10px;opacity:.75;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.vsw a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:32px;padding:0 10px;border-radius:999px;color:var(--nav-ink);text-decoration:none}
+.vsw a:hover{background:var(--nav-2)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script src="demo-api.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="proto" role="note"><div class="wrap"><b>Demo</b><span>How the real backend would work. This is a plan for IPRO team Elevate, not a running service.</span></div></div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="demo.html" aria-label="Back to the Elevate demo"><span class="logo-block" aria-hidden="true">IIT</span><span class="logo-text"><span class="lt-iit">Illinois Tech</span><i aria-hidden="true"></i><b>Elevate</b></span></a>
+  <a class="btn btn-p" href="demo.html">Open the demo</a>
+</div></header>
+
+<main id="main" class="wrap">
+  <section class="hero" aria-labelledby="h1">
+    <ol class="crumbs" aria-label="Breadcrumb"><li><a href="demo.html">Opportunities Hub demo</a></li><li aria-current="page">How it works</li></ol>
+    <h1 id="h1">How the Hub gets a student's info</h1>
+    <p class="lede">In the demo, John's data comes from a mock API that runs in your browser. This page shows what would sit behind it at Illinois Tech: where each piece of a student's info comes from, what the Hub keeps, and what it never touches.</p>
+    <nav class="toc" aria-label="On this page">
+      <a href="#flow">Flowchart</a>
+      <a href="#listings">Where listings come from</a>
+      <a href="#data">What the Hub needs</a>
+      <a href="#agent">Keeping programs current</a>
+      <a href="#api">The API</a>
+      <a href="#db">Database</a>
+      <a href="#ask">What we need from IIT</a>
+    </nav>
+  </section>
+
+  <section class="sec" id="flow" aria-labelledby="flow-h">
+    <h2 id="flow-h">From sign-in to matches</h2>
+    <p class="sec-sub">Every student starts the same way: sign in, say what the Hub may read, and get a profile that only holds what matching needs. Listings come in from the other side: Handshake postings, kept current by the tracking agent.</p>
+    <ul class="legend" aria-label="Legend">
+      <li><span class="sw sw-stu" aria-hidden="true"></span>Student</li>
+      <li><span class="sw sw-hub" aria-hidden="true"></span>Elevate Hub (what we would build)</li>
+      <li><span class="sw sw-iit" aria-hidden="true"></span>Illinois Tech systems</li>
+      <li><span class="sw sw-db" aria-hidden="true"></span>Stored data</li>
+    </ul>
+    <figure class="flow-fig">
+      <div class="flow-scroll" tabindex="0" role="region" aria-label="Flowchart, scrolls sideways on small screens">
+        <svg class="flow-svg" viewBox="0 0 1000 1380" role="img" aria-labelledby="fc-title fc-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="fc-title">How the Opportunities Hub gets a student's info</title>
+          <desc id="fc-desc">The student signs in through Okta. The Hub asks permission, reads Banner, Handshake and Elevate records, checks Global Services for international students, keeps a minimal profile in the Elevate database, and the matching service combines it with the programs table to build the feed, the to-do list and alerts. The numbered list below the chart describes each step.</desc>
+          <defs><marker id="fc-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="fc-ah" d="M0 0L10 5L0 10z"/></marker></defs>
+
+          <g class="fc-node o-stu"><rect x="270" y="16" width="300" height="46" rx="23"/><text class="fc-t" x="420" y="44">Student opens the Opportunities Hub</text></g>
+          <path class="fc-ln" d="M420 62V102"/>
+
+          <g class="fc-node o-hub"><rect x="270" y="104" width="300" height="66" rx="10"/><text class="fc-t" x="420" y="132">Sign in with Illinois Tech Portal</text><text class="fc-s" x="420" y="153">The Hub hands sign-in to Okta (SAML)</text></g>
+          <g class="fc-badge"><circle cx="270" cy="104" r="13"/><text x="270" y="108.5">1</text></g>
+          <g class="fc-node o-iit"><rect x="640" y="104" width="340" height="66" rx="10"/><text class="fc-t" x="810" y="132">Okta · Access Illinois Tech</text><text class="fc-s" x="810" y="153">Portal password + Okta Verify MFA</text></g>
+          <path class="fc-ln" d="M570 137H638"/><text class="fc-lab" x="604" y="128">redirect</text>
+          <path class="fc-ln" d="M810 170V247H572"/><text class="fc-lab" x="692" y="239">signed SAML assertion</text>
+
+          <g class="fc-node o-hub"><rect x="270" y="214" width="300" height="66" rx="10"/><text class="fc-t" x="420" y="242">Hub learns who you are</text><text class="fc-s" x="420" y="263">CWID, name, Illinois Tech email</text></g>
+          <g class="fc-badge"><circle cx="270" cy="214" r="13"/><text x="270" y="218.5">2</text></g>
+          <path class="fc-ln" d="M420 280V310"/>
+
+          <g class="fc-node o-dec"><polygon points="420,312 580,384 420,456 260,384"/><text class="fc-d" x="420" y="379">Allow the Hub to read your</text><text class="fc-d" x="420" y="399">year, major and work status?</text></g>
+          <g class="fc-badge"><circle cx="352" cy="344" r="13"/><text x="352" y="348.5">3</text></g>
+          <path class="fc-ln" d="M260 384H232"/><text class="fc-lab" x="246" y="375">No</text>
+          <g class="fc-node o-stu"><rect x="30" y="344" width="200" height="80" rx="10"/><text class="fc-t" x="130" y="372">Fill it in yourself</text><text class="fc-s" x="130" y="393">Year, major, work status</text><text class="fc-s" x="130" y="411">(3 quick picks)</text></g>
+          <path class="fc-ln" d="M420 456V492"/><text class="fc-lab fc-lab-s" x="430" y="478">Yes</text>
+
+          <g class="fc-node o-hub"><rect x="270" y="494" width="300" height="66" rx="10"/><text class="fc-t" x="420" y="522">Elevate API asks for your records</text><text class="fc-s" x="420" y="543">Read-only, and every read is logged</text></g>
+          <g class="fc-badge"><circle cx="270" cy="494" r="13"/><text x="270" y="498.5">4</text></g>
+          <path class="fc-bus" d="M420 560V584M180 584H825"/>
+          <path class="fc-ln" d="M180 584V610"/><path class="fc-ln" d="M500 584V610"/><path class="fc-ln" d="M825 584V610"/>
+
+          <g class="fc-node o-iit"><rect x="40" y="612" width="280" height="138" rx="10"/><text class="fc-t" x="180" y="640">Banner (Registrar)</text><text class="fc-s" x="180" y="664">Class standing, credit hours</text><text class="fc-s" x="180" y="686">Major, minor and college</text><text class="fc-s" x="180" y="708">Expected graduation</text><text class="fc-s" x="180" y="730">Citizenship category</text></g>
+          <g class="fc-node o-iit"><rect x="350" y="612" width="300" height="138" rx="10"/><text class="fc-t" x="500" y="640">Handshake (Career Services)</text><text class="fc-s" x="500" y="664">Resume on file</text><text class="fc-s" x="500" y="686">Career appointments</text><text class="fc-s" x="500" y="708">Assigned Elevate coach</text></g>
+          <g class="fc-node o-iit"><rect x="680" y="612" width="290" height="138" rx="10"/><text class="fc-t" x="825" y="640">Elevate program records</text><text class="fc-s" x="825" y="664">Experiences completed</text><text class="fc-s" x="825" y="686">Digital badges earned</text></g>
+          <path class="fc-bus" d="M180 750V774M500 750V774M825 750V774M180 774H825"/>
+          <path class="fc-ln" d="M420 774V802"/>
+
+          <g class="fc-node o-dec"><polygon points="420,804 570,868 420,932 270,868"/><text class="fc-d" x="420" y="863">International student</text><text class="fc-d" x="420" y="883">(F-1 or J-1)?</text></g>
+          <g class="fc-badge"><circle cx="355" cy="832" r="13"/><text x="355" y="836.5">5</text></g>
+          <path class="fc-ln" d="M570 868H638"/><text class="fc-lab" x="604" y="859">Yes</text>
+          <g class="fc-node o-iit"><rect x="640" y="828" width="330" height="80" rx="10"/><text class="fc-t" x="805" y="857">Office of Global Services</text><text class="fc-s" x="805" y="878">ISSS Portal: CPT or OPT on file,</text><text class="fc-s" x="805" y="896">and the dates only</text></g>
+          <path class="fc-ln" d="M640 900H604V992H572"/>
+          <path class="fc-ln" d="M420 932V954"/><text class="fc-lab fc-lab-s" x="430" y="948">No</text>
+
+          <path class="fc-ln" d="M30 384H16V992H268"/><text class="fc-lab" x="140" y="984">your picks</text>
+
+          <g class="fc-node o-hub"><rect x="270" y="956" width="300" height="72" rx="10"/><text class="fc-t" x="420" y="982">Profile builder</text><text class="fc-s" x="420" y="1002">Keeps year, major group, work status</text><text class="fc-s" x="420" y="1019">and interests. Drops the rest.</text></g>
+          <g class="fc-badge"><circle cx="270" cy="956" r="13"/><text x="270" y="960.5">6</text></g>
+          <path class="fc-ln" d="M420 1028V1070"/>
+
+          <g class="fc-node o-db"><rect x="270" y="1072" width="300" height="66" rx="10"/><text class="fc-t" x="420" y="1100">Elevate database</text><text class="fc-s" x="420" y="1121">Profile, consent record, audit log</text></g>
+          <g class="fc-badge"><circle cx="270" cy="1072" r="13"/><text x="270" y="1076.5">7</text></g>
+          <path class="fc-ln" d="M420 1138V1180"/>
+
+          <g class="fc-node o-iit"><rect x="640" y="972" width="330" height="60" rx="10"/><text class="fc-t" x="805" y="997">Handshake postings</text><text class="fc-s" x="805" y="1018">Shared through Career Services</text></g>
+          <path class="fc-ln" d="M805 1032V1075"/>
+          <g class="fc-node o-hub"><rect x="640" y="1077" width="330" height="66" rx="10"/><text class="fc-t" x="805" y="1105">Tracking agent</text><text class="fc-s" x="805" y="1126">Pulls new postings, flags unclear ones</text></g>
+          <path class="fc-ln" d="M805 1143V1180"/>
+          <g class="fc-node o-db"><rect x="640" y="1182" width="330" height="66" rx="10"/><text class="fc-t" x="805" y="1210">Programs table</text><text class="fc-s" x="805" y="1231">Deadlines, eligibility rules, steps</text></g>
+          <path class="fc-ln" d="M640 1215H572"/><text class="fc-lab" x="606" y="1206">programs</text>
+
+          <g class="fc-node o-hub"><rect x="270" y="1182" width="300" height="66" rx="10"/><text class="fc-t" x="420" y="1210">Matching service</text><text class="fc-s" x="420" y="1231">Scores every program for you</text></g>
+          <g class="fc-badge"><circle cx="270" cy="1182" r="13"/><text x="270" y="1186.5">8</text></g>
+          <path class="fc-bus" d="M420 1248V1272M180 1272H825"/>
+          <path class="fc-ln" d="M180 1272V1298"/><path class="fc-ln" d="M500 1272V1298"/><path class="fc-ln" d="M825 1272V1298"/>
+
+          <g class="fc-node o-stu"><rect x="40" y="1300" width="280" height="66" rx="10"/><text class="fc-t" x="180" y="1328">Programs for you</text><text class="fc-s" x="180" y="1349">Feed sorted by match %</text></g>
+          <g class="fc-node o-stu"><rect x="350" y="1300" width="300" height="66" rx="10"/><text class="fc-t" x="500" y="1328">My week</text><text class="fc-s" x="500" y="1349">To-dos from checklists and invites</text></g>
+          <g class="fc-node o-stu"><rect x="680" y="1300" width="290" height="66" rx="10"/><text class="fc-t" x="825" y="1328">Updates</text><text class="fc-s" x="825" y="1349">Alerts, email reminders, .ics files</text></g>
+        </svg>
+      </div>
+      <figcaption class="flow-hint">Scroll the chart sideways to see all of it. The numbered list below covers the same steps.</figcaption>
+    </figure>
+
+    <ol class="steps">
+      <li><div><b>Sign in</b><p>The student picks "Sign in with Illinois Tech Portal". The Hub hands sign-in to Okta (Access Illinois Tech), where they use their Portal password and Okta Verify. The Hub never sees the password.</p></div></li>
+      <li><div><b>Learn who they are</b><p>Okta sends back a signed SAML assertion with the student's CWID, name and Illinois Tech email. That is enough to greet them, not enough to match them.</p></div></li>
+      <li><div><b>Ask before reading anything else</b><p>The Hub shows what it wants to read (class year, major, work status) and why. If the student says no, they pick those three things themselves and still get matches.</p></div></li>
+      <li><div><b>Read the records</b><p>With the student's OK, the Elevate API reads each system with a read-only service account and logs every read.</p>
+        <ul>
+          <li><b>Banner (Registrar):</b> class standing, credit hours, major, minor, college, expected graduation, citizenship category.</li>
+          <li><b>Handshake (Career Services):</b> resume on file, career appointments, assigned Elevate coach.</li>
+          <li><b>Elevate program records:</b> experiences completed and digital badges.</li>
+        </ul></div></li>
+      <li><div><b>International students only</b><p>If Banner shows F-1 or J-1 status, the Hub asks the Office of Global Services whether CPT or OPT is on file and for which dates. Nothing else from immigration records.</p></div></li>
+      <li><div><b>Keep only what matching needs</b><p>The profile builder turns those records into a handful of fields: year, major group, work status and interests. Raw records are not copied into the Hub.</p></div></li>
+      <li><div><b>Save it with a paper trail</b><p>The Elevate database stores the profile, what the student agreed to and when, and an audit log of every read. Banner is re-checked each night, so a change of major updates matches the next morning.</p></div></li>
+      <li><div><b>Match and act</b><p>The matching service scores every program in the programs table against the profile. The scores drive the program feed, the My week to-do list, deadline alerts and calendar files.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="listings" aria-labelledby="listings-h">
+    <h2 id="listings-h">Where the listings come from</h2>
+    <p class="sec-sub">For now, every internship and job listing comes from Handshake, through Career Services. Employers already post there for Illinois Tech students. Research Match projects come straight from faculty.</p>
+    <ul class="legend" aria-label="Legend">
+      <li><span class="sw sw-stu" aria-hidden="true"></span>People</li>
+      <li><span class="sw sw-hub" aria-hidden="true"></span>Elevate Hub (what we would build)</li>
+      <li><span class="sw sw-iit" aria-hidden="true"></span>Illinois Tech systems</li>
+      <li><span class="sw sw-db" aria-hidden="true"></span>Stored data</li>
+    </ul>
+    <figure class="flow-fig">
+      <div class="flow-scroll" tabindex="0" role="region" aria-label="Listings chart, scrolls sideways on small screens">
+        <svg class="flow-svg flow-svg-2" viewBox="0 0 1000 692" role="img" aria-labelledby="fc2-title fc2-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="fc2-title">Where Opportunities Hub listings come from</title>
+          <desc id="fc2-desc">Employers post internships and jobs on Handshake. The tracking agent pulls new and changed postings through access Career Services arranges, and drafts eligibility tags and next steps. Clear listings go straight into the programs table. Unclear ones go to a review queue, where a person checks them first. Faculty post research projects straight into Research Match. Both tables feed the matching service.</desc>
+
+          <g class="fc-node o-stu"><rect x="220" y="20" width="320" height="62" rx="10"/><text class="fc-t" x="380" y="46">Employers</text><text class="fc-s" x="380" y="67">Post internships, co-ops and jobs</text></g>
+          <path class="fc-ln" d="M380 82V112"/>
+          <g class="fc-node o-iit"><rect x="220" y="114" width="320" height="80" rx="10"/><text class="fc-t" x="380" y="140">Handshake (Career Services)</text><text class="fc-s" x="380" y="162">Postings for Illinois Tech students,</text><text class="fc-s" x="380" y="180">career fair employers and co-ops</text></g>
+          <path class="fc-ln" d="M380 194V224"/><text class="fc-lab fc-lab-s" x="392" y="214">access through Career Services</text>
+          <g class="fc-node o-hub"><rect x="220" y="226" width="320" height="80" rx="10"/><text class="fc-t" x="380" y="252">Tracking agent</text><text class="fc-s" x="380" y="274">Pulls new and changed postings daily,</text><text class="fc-s" x="380" y="292">drafts eligibility tags and next steps</text></g>
+          <path class="fc-ln" d="M380 306V330"/>
+
+          <g class="fc-node o-dec"><polygon points="380,332 530,398 380,464 230,398"/><text class="fc-d" x="380" y="393">Clear enough to</text><text class="fc-d" x="380" y="413">publish on its own?</text></g>
+          <path class="fc-ln" d="M230 398H198"/><text class="fc-lab" x="214" y="389">No</text>
+          <g class="fc-node o-hub"><rect x="16" y="342" width="180" height="112" rx="10"/><text class="fc-t" x="106" y="368">Review queue</text><text class="fc-s" x="106" y="390">A person checks</text><text class="fc-s" x="106" y="408">unsure tags, citizenship</text><text class="fc-s" x="106" y="426">limits, late changes</text><text class="fc-s" x="106" y="444">and student reports</text></g>
+          <path class="fc-ln" d="M106 454V531H218"/>
+          <path class="fc-ln" d="M380 464V498"/><text class="fc-lab fc-lab-s" x="390" y="486">Yes</text>
+
+          <g class="fc-node o-db"><rect x="220" y="500" width="320" height="62" rx="10"/><text class="fc-t" x="380" y="526">Programs table</text><text class="fc-s" x="380" y="547">Deadlines, eligibility rules, steps</text></g>
+
+          <g class="fc-node o-stu"><rect x="640" y="20" width="320" height="62" rx="10"/><text class="fc-t" x="800" y="46">Faculty</text><text class="fc-s" x="800" y="67">Research projects starting this term</text></g>
+          <path class="fc-ln" d="M800 82V112"/>
+          <g class="fc-node o-hub"><rect x="640" y="114" width="320" height="62" rx="10"/><text class="fc-t" x="800" y="140">Research Match</text><text class="fc-s" x="800" y="161">Faculty post projects directly</text></g>
+          <path class="fc-ln" d="M800 176V498"/>
+          <g class="fc-node o-db"><rect x="640" y="500" width="320" height="62" rx="10"/><text class="fc-t" x="800" y="526">Research projects table</text><text class="fc-s" x="800" y="547">Open faculty projects</text></g>
+
+          <path class="fc-ln" d="M380 562V639H428"/>
+          <path class="fc-ln" d="M800 562V639H752"/>
+          <g class="fc-node o-hub"><rect x="430" y="606" width="320" height="66" rx="10"/><text class="fc-t" x="590" y="634">Matching service</text><text class="fc-s" x="590" y="655">Step 8 on the first chart</text></g>
+        </svg>
+      </div>
+      <figcaption class="flow-hint">Scroll the chart sideways to see all of it.</figcaption>
+    </figure>
+    <ul class="notes">
+      <li>Handshake is the only source of listings for now. Other sources, like company careers pages or national lab programs, could be added later through the same agent.</li>
+      <li>Most listings publish on their own. Career Services already vets employers in Handshake, so a person only sees what the agent flags: it isn't sure who can apply, the posting limits citizenship or work status, a deadline or eligibility rule changed after it went live, or a student reported a problem.</li>
+      <li>Someone on the Elevate team also spot-checks a few random listings each week.</li>
+      <li>The Hub reads postings through access Career Services arranges with Handshake, not by scraping it. Every listing keeps its Handshake link and a "last checked" date.</li>
+      <li>Faculty projects go live as soon as they're posted. Elevate can still hide one.</li>
+    </ul>
+  </section>
+
+  <section class="sec" id="data" aria-labelledby="data-h">
+    <h2 id="data-h">What the Hub needs, and where it comes from</h2>
+    <p class="sec-sub">Every field below earns its place by changing what a student sees. If a field doesn't change a match, a deadline or a next step, the Hub doesn't ask for it.</p>
+    <table class="tbl">
+      <thead><tr><th scope="col">Info</th><th scope="col">Why the Hub needs it</th><th scope="col">Comes from</th><th scope="col">Privacy</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">CWID</th><td data-l="Why">Links a student's records across systems. Never shown on screen.</td><td data-l="From">Okta sign-in</td><td data-l="Privacy"><span class="tag">Internal ID</span></td></tr>
+        <tr><th scope="row">Name and Illinois Tech email</th><td data-l="Why">Greeting, reminders, replies from faculty.</td><td data-l="From">Okta sign-in</td><td data-l="Privacy"><span class="tag tag-ok">Directory info</span></td></tr>
+        <tr><th scope="row">Class standing and credit hours</th><td data-l="Why">Many programs are only open to certain years.</td><td data-l="From">Banner (Registrar)</td><td data-l="Privacy"><span class="tag tag-warn">Needs the student's OK</span></td></tr>
+        <tr><th scope="row">Major, minor and college</th><td data-l="Why">Eligibility and the match score.</td><td data-l="From">Banner (Registrar)</td><td data-l="Privacy"><span class="tag tag-warn">Needs the student's OK</span></td></tr>
+        <tr><th scope="row">Expected graduation</th><td data-l="Why">Internship, full-time job or grad school prep.</td><td data-l="From">Banner (Registrar)</td><td data-l="Privacy"><span class="tag tag-warn">Needs the student's OK</span></td></tr>
+        <tr><th scope="row">Citizenship category</th><td data-l="Why">National labs and some federal programs are limited to US citizens or permanent residents.</td><td data-l="From">Banner (Registrar)</td><td data-l="Privacy"><span class="tag tag-red">Sensitive: category only</span></td></tr>
+        <tr><th scope="row">CPT or OPT on file (international students)</th><td data-l="Why">CPT badges and start-date reminders.</td><td data-l="From">Office of Global Services (ISSS Portal)</td><td data-l="Privacy"><span class="tag tag-red">Sensitive: yes/no and dates</span></td></tr>
+        <tr><th scope="row">Resume on file, career appointments</th><td data-l="Why">"Resume reviewed" steps and coach booking.</td><td data-l="From">Handshake (Career Services)</td><td data-l="Privacy"><span class="tag">Shared by the student</span></td></tr>
+        <tr><th scope="row">Elevate coach, experiences and badges</th><td data-l="Why">Coach card and Elevate progress.</td><td data-l="From">Elevate program records</td><td data-l="Privacy"><span class="tag tag-warn">Needs the student's OK</span></td></tr>
+        <tr><th scope="row">Interests</th><td data-l="Why">Ranks programs the student is eligible for.</td><td data-l="From">The student, in the Hub</td><td data-l="Privacy"><span class="tag">Student's own, edit anytime</span></td></tr>
+        <tr><th scope="row">Saved programs, checklists, applications</th><td data-l="Why">Dashboard, to-dos and deadline alerts.</td><td data-l="From">The student, in the Hub</td><td data-l="Privacy"><span class="tag">Student's own, deleted on request</span></td></tr>
+      </tbody>
+    </table>
+    <div class="two">
+      <div class="card card-red"><h3>What the Hub never collects</h3><ul><li>GPA and grades</li><li>Social Security number</li><li>Date of birth and home address</li><li>Visa, passport or I-20 documents</li><li>Disability, health or financial aid records</li></ul></div>
+      <div class="card card-acc"><h3>FERPA in one paragraph</h3><p>Illinois Tech's FERPA page lists what counts as directory information, such as a student's name and dates of attendance. Treat everything past that, like class year, major and citizenship, as part of the education record: the Hub reads it only after the student allows it, under a data-sharing agreement with the Registrar, and logs every read.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="agent" aria-labelledby="agent-h">
+    <h2 id="agent-h">Keeping programs current</h2>
+    <p class="sec-sub">The "Tracking agent" box in both charts. It does the boring part of watching Handshake for new and changed postings, and sends only the listings it isn't sure about to a person.</p>
+    <ol class="pipe">
+      <li><b>Pull</b><p>New and changed Handshake postings for Illinois Tech students.</p><span class="who who-agent">Agent</span></li>
+      <li><b>Re-check</b><p>Daily, and hourly in the two weeks before a deadline.</p><span class="who who-agent">Agent</span></li>
+      <li><b>Draft</b><p>Tag who can apply and write the next steps. An AI model drafts this.</p><span class="who who-agent">Agent</span></li>
+      <li><b>Compare</b><p>New posting, changed deadline, closed, or no change.</p><span class="who who-agent">Agent</span></li>
+      <li><b>Flag the unsure ones</b><p>Unclear eligibility, citizenship limits, late changes and student reports go to a person.</p><span class="who who-person">Elevate team</span></li>
+      <li><b>Publish and notify</b><p>Clear listings go live on their own. Students who saved or match one hear about it.</p><span class="who who-hub">Hub</span></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="api" aria-labelledby="api-h">
+    <h2 id="api-h">The API the demo calls</h2>
+    <p class="sec-sub" id="api-sub">These are the requests the demo's mock API answers. A real Elevate server would answer the same ones; the right column says which system would actually do the work. Open the demo's Guide and choose API calls to watch them happen as you click.</p>
+    <table class="tbl api">
+      <thead><tr><th scope="col">Request</th><th scope="col">What it does</th><th scope="col">Real system behind it</th></tr></thead>
+      <tbody id="api-rows"><tr><td colspan="3">Loading the mock API…</td></tr></tbody>
+    </table>
+    <p class="sec-sub">Not in the mock: <code>POST /api/auth/saml</code>, where Okta sends the signed sign-in. The demo starts after that step, already signed in as John.</p>
+  </section>
+
+  <section class="sec" id="db" aria-labelledby="db-h">
+    <h2 id="db-h">Database tables</h2>
+    <p class="sec-sub">One PostgreSQL database for the Hub. Banner, Handshake and Global Services stay the systems of record; the Hub keeps only what it needs to match and remind.</p>
+    <ul class="tables">
+      <li><code>students</code><span>CWID, name, email, last Banner sync</span></li>
+      <li><code>consents</code><span>What the student allowed, when, and on which screen</span></li>
+      <li><code>student_profiles</code><span>Year, major group, work status, interests</span></li>
+      <li><code>programs</code><span>Title, organization, deadline, location, pay, steps, Handshake link</span></li>
+      <li><code>eligibility_rules</code><span>Years, majors and citizenship each program accepts</span></li>
+      <li><code>saved_programs</code><span>Which student saved which program</span></li>
+      <li><code>checklist_progress</code><span>Which steps a student has finished</span></li>
+      <li><code>applications</code><span>Program or project, stage, status</span></li>
+      <li><code>appointments</code><span>Coach chats and research interviews</span></li>
+      <li><code>todos</code><span>Tasks a coach assigns</span></li>
+      <li><code>notifications</code><span>Updates feed and email log</span></li>
+      <li><code>research_projects</code><span>Faculty projects in Research Match</span></li>
+      <li><code>research_applications</code><span>Student applications to those projects</span></li>
+      <li><code>agent_runs</code><span>What the tracking agent pulled from Handshake and changed</span></li>
+      <li><code>listing_flags</code><span>Listings the agent sent to a person, and why</span></li>
+      <li><code>audit_log</code><span>Every read of a student's records, and by whom</span></li>
+    </ul>
+  </section>
+
+  <section class="sec" id="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">What we'd need from Illinois Tech</h2>
+    <p class="sec-sub">None of this is technically hard. Each step needs an office to say yes.</p>
+    <ul class="asks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Office of Technology Services</b><span>Register the Hub as an app in Okta (Access Illinois Tech) so students can sign in with the Portal.</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Registrar</b><span>A data-sharing agreement and read-only access to the Banner fields above, after a FERPA review.</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Office of Global Services</b><span>A yes/no CPT and OPT status for international students, or agreement that the Hub only links out to the ISSS Portal.</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Career Services and Elevate</b><span>Handshake access for job postings, appointments and resume status, plus Elevate coach assignments and badge records.</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Faculty</b><span>A few departments willing to post projects in Research Match the week they start them.</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><div><b>Security and hosting</b><span>A security review, hosting on Illinois Tech servers, and a plain-language privacy notice students read before they allow access.</span></div></li>
+    </ul>
+    <div class="two">
+      <div class="card"><h3>Suggested stack</h3><ul><li>Web app: HTML and JavaScript, like the demo</li><li>API: Node.js or Python on Illinois Tech servers</li><li>Database: PostgreSQL</li><li>Sign-in: SAML through Okta</li><li>Jobs: a scheduler for nightly Banner syncs and the tracking agent</li></ul></div>
+      <div class="card"><h3>Where these system names come from</h3><ul class="src">
+        <li><a href="https://iit.edu/ots/access/illinois-tech-portal" target="_blank" rel="noopener noreferrer">Illinois Tech Portal (OTS)</a></li>
+        <li><a href="https://www.iit.edu/ots/access" target="_blank" rel="noopener noreferrer">Access to Illinois Tech systems: Okta and MFA (OTS)</a></li>
+        <li><a href="https://www.iit.edu/ots/software/banner" target="_blank" rel="noopener noreferrer">What is Banner (OTS)</a></li>
+        <li><a href="https://www.iit.edu/registrar/students-and-alumni/ferpa" target="_blank" rel="noopener noreferrer">FERPA (Registrar)</a></li>
+        <li><a href="https://www.iit.edu/international-center/student-employment/curricular-practical-training-cpt" target="_blank" rel="noopener noreferrer">CPT and the ISSS Portal (Global Services)</a></li>
+        <li><a href="https://www.iit.edu/career-services/career-resources/handshake" target="_blank" rel="noopener noreferrer">Handshake at Illinois Tech (Career Services)</a></li>
+      </ul></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft"><div class="wrap"><span>IPRO team Elevate · Backend plan for the Opportunities Hub demo</span><span>Not an official Illinois Tech page. John Smith and all program data are fictional.</span></div></footer>
+
+<nav class="vsw" aria-label="Prototype version">
+  <span class="vsw-l">Version</span>
+  <a href="v1.html">v1</a>
+  <a href="index.html">v2</a>
+  <a href="demo.html">Demo</a>
+</nav>
+
+<script>
+(function(){
+  var body=document.getElementById('api-rows');
+  if(!window.EHAPI){body.innerHTML='<tr><td colspan="3">The mock API did not load.</td></tr>';return;}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  var routes=EHAPI.routes(), order=[], groups={};
+  routes.forEach(function(r){if(!groups[r.group]){groups[r.group]=[];order.push(r.group);} groups[r.group].push(r);});
+  body.innerHTML=order.map(function(g){
+    return '<tr class="api-g"><th colspan="3" scope="colgroup">'+esc(g)+'</th></tr>'+groups[g].map(function(r){
+      return '<tr><th scope="row"><span class="m m-'+esc(r.method)+'">'+esc(r.method)+'</span><code>'+esc(r.path)+'</code></th><td data-l="Does">'+esc(r.does)+'</td><td data-l="Real system">'+esc(r.sys)+'</td></tr>';
+    }).join('');
+  }).join('');
+  var sub=document.getElementById('api-sub');
+  sub.textContent='These '+routes.length+' requests are what the demo\'s mock API answers. A real Elevate server would answer the same ones; the right column says which system would do the work. Open the demo\'s Guide and choose API calls to watch them happen as you click.';
+})();
+</script>
+</body>
+</html>
